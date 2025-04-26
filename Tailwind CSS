@@ -1,0 +1,38 @@
+<table className="min-w-full text-sm text-left text-gray-700">
+  <thead className="bg-gray-100 uppercase text-gray-600 text-xs">
+    <tr>
+      <th className="px-4 py-3">#</th>
+      <th className="px-4 py-3">Name</th>
+      <th className="px-4 py-3">Price</th>
+      <th className="px-4 py-3">1h %</th>
+      <th className="px-4 py-3">24h %</th>
+      <th className="px-4 py-3">7d %</th>
+      <th className="px-4 py-3">Market Cap</th>
+      <th className="px-4 py-3">Volume(24h)</th>
+      <th className="px-4 py-3">Circulating Supply</th>
+      <th className="px-4 py-3">Last 7 Days</th>
+    </tr>
+  </thead>
+  <tbody>
+    {cryptoData.map((coin, index) => (
+      <tr key={coin.id} className="border-b hover:bg-gray-50">
+        <td className="px-4 py-2">{index + 1}</td>
+        <td className="px-4 py-2 flex items-center gap-2">
+          <img src={coin.image} alt={coin.name} className="w-6 h-6" />
+          <span className="font-medium">{coin.name}</span>
+          <span className="text-gray-400 text-xs">{coin.symbol.toUpperCase()}</span>
+        </td>
+        <td className="px-4 py-2">${coin.current_price.toLocaleString()}</td>
+        <td className="px-4 py-2 text-green-600">{coin.price_change_percentage_1h_in_currency?.toFixed(2)}%</td>
+        <td className="px-4 py-2 text-green-600">{coin.price_change_percentage_24h_in_currency?.toFixed(2)}%</td>
+        <td className="px-4 py-2 text-green-600">{coin.price_change_percentage_7d_in_currency?.toFixed(2)}%</td>
+        <td className="px-4 py-2">${coin.market_cap.toLocaleString()}</td>
+        <td className="px-4 py-2">${coin.total_volume.toLocaleString()}</td>
+        <td className="px-4 py-2">{coin.circulating_supply.toLocaleString()} {coin.symbol.toUpperCase()}</td>
+        <td className="px-4 py-2">
+          <img src={coin.sparkline_in_7d} alt="7d chart" className="w-24 h-6 object-contain" />
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
